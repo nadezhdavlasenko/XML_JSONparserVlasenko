@@ -15,18 +15,29 @@ import java.io.File;
 
 public class Creator {
 
+    static DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+
+    static DocumentBuilder documentBuilder;
+
+    static {
+        try {
+            documentBuilder = documentFactory.newDocumentBuilder();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    static Document document = documentBuilder.newDocument();
+
+    private Creator() throws ParserConfigurationException {
+    }
 
     public static void create(String xmlFilePath ) throws TransformerConfigurationException {
         try {
 
-            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
-
-            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
-
-            Document document = documentBuilder.newDocument();
-
             // root element
-            Element root = document.createElement("company");
+            Element root = document.createElement("catalog");
             document.appendChild(root);
 
             // employee element
@@ -77,8 +88,6 @@ public class Creator {
 
             System.out.println("Done creating XML File");
 
-        } catch (ParserConfigurationException pce) {
-            pce.printStackTrace();
         } catch (TransformerException tfe) {
             tfe.printStackTrace();
         }
