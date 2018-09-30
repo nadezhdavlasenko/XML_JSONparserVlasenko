@@ -1,7 +1,7 @@
 import javax.xml.transform.TransformerConfigurationException;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public class Main {
@@ -19,12 +19,20 @@ public class Main {
         List<Person> peopleFromXML = XMLParser.parseRichPeople(xmlFilePath);
 
         final int richBorder = 10000;
-        Predicate<Person> predicate = x->x.getCash()> richBorder;
+        Predicate<Person> predicate = x->x.getCash()>richBorder;
 
         FilterWriter filterWriter = FilterWriter.getFilterWriter();
         filterWriter.filterAnDWriteToFile(peopleFromXML, predicate, richPeoplePath);
         filterWriter.filterAnDWriteToConsole(peopleFromXML,predicate);
-        //richPeople.stream().forEach(System.out::println);
+        final String url = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
+        JSONParser jsonParser = JSONParser.getJsonParser();
+        String jsonString = jsonParser.getJSONStringFromAPI(url);
+        //System.out.println(jsonString);
+        List<Map> list = jsonParser.getMapFromJSONString(jsonString);
+        System.out.println(list);
+        Map map = jsonParser.getMapFromList(list,"txt", "rate");
+        System.out.println(map);
+
 
 
     }
