@@ -1,10 +1,10 @@
 import javax.xml.transform.TransformerConfigurationException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
-    public static final String xmlFilePath = "/Users/nadezhdavlasenko/IdeaProjects/XMLparserVlasenko/src/main/resources/xmlfile.xml";
+    public static final String xmlFilePath = "xmlfile.xml";
 
     public static void main(String[] args) throws TransformerConfigurationException {
         List<Person> people = Arrays.asList(
@@ -14,7 +14,10 @@ public class Main {
         );
         XMLCreator.create(xmlFilePath, people);
 
-        List<Person> richPeople = new ArrayList<>();
+        List<Person> peopleFromXML = XMLParser.parseRichPeople(xmlFilePath);
+
+        //richPeople.stream().forEach(System.out::println);
+
 
     }
 }
