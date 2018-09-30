@@ -16,11 +16,20 @@ import java.util.List;
 
 public class XMLCreator {
 
-    static DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+    private static final XMLCreator xmlCreator = new XMLCreator();
 
-    static DocumentBuilder documentBuilder;
+    private XMLCreator() {
+    }
 
-    static {
+    public static XMLCreator getXMLCreator() {
+        return xmlCreator;
+    }
+
+    DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+
+    DocumentBuilder documentBuilder;
+
+    {
         try {
             documentBuilder = documentFactory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
@@ -29,22 +38,18 @@ public class XMLCreator {
         }
     }
 
-    static Document document = documentBuilder.newDocument();
+    Document document = documentBuilder.newDocument();
 
-    private XMLCreator() throws ParserConfigurationException {
-    }
+    private final String CATALOG = "catalog";
+    private final String NOTEBOOK = "notebook";
+    private final String PERSON = "person";
+    private final String NAME = "name";
+    private final String ADDRESS = "address";
+    private final String CASH = "cash";
+    private final String EDUCATION = "education";
 
-    private static final String CATALOG = "catalog";
-    private static final String NOTEBOOK = "notebook";
-    private static final String PERSON = "person";
-    private static final String NAME = "name";
-    private static final String ADDRESS = "address";
-    private static final String CASH = "cash";
-    private static final String EDUCATION = "education";
-
-    public static void create(String xmlFilePath, List<Person> people) throws TransformerConfigurationException {
+    public void create(String xmlFilePath, List<Person> people) throws TransformerConfigurationException {
         try {
-
             // root element
             Element root = document.createElement(CATALOG);
             document.appendChild(root);

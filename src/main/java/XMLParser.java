@@ -12,7 +12,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XMLParser {
-    public static List<Person> parseRichPeople(String fileName) {
+    private static final XMLParser xmlParser = new XMLParser();
+
+    private XMLParser() {
+    }
+
+    public static XMLParser getXMLParser() {
+        return xmlParser;
+    }
+
+    public List<Person> parseRichPeople(String fileName) {
+
+
         List<Person> people = new ArrayList<>();
         try {
             // Создается построитель документа
@@ -34,20 +45,17 @@ public class XMLParser {
                 if (person.getNodeType() != Node.TEXT_NODE) {
                     NodeList personProps = person.getChildNodes();
                     Person p = new Person();
-                    p.setName(((Element)person).getElementsByTagName("name").item(0).getTextContent());
-                    p.setAddress(((Element)person).getElementsByTagName("address").item(0).getTextContent());
-                    p.setCash(Integer.valueOf(((Element)person).getElementsByTagName("cash").item(0).getTextContent()));
+                    p.setName(((Element) person).getElementsByTagName("name").item(0).getTextContent());
+                    p.setAddress(((Element) person).getElementsByTagName("address").item(0).getTextContent());
+                    p.setCash(Integer.valueOf(((Element) person).getElementsByTagName("cash").item(0).getTextContent()));
                     people.add(p);
-                    for(int j = 0; j < personProps.getLength(); j++) {
+                    for (int j = 0; j < personProps.getLength(); j++) {
                         Node personProp = personProps.item(j);
                         // Если нода не текст, то это один из параметров книги - печатаем
                         if (personProp.getNodeType() != Node.TEXT_NODE) {
                             System.out.println(personProp.getNodeName() + ":" + personProp.getChildNodes().item(0).getTextContent());
-
-
                         }
                     }
-
                     System.out.println("===========>>>>");
                 }
             }

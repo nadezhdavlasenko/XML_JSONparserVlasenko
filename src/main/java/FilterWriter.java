@@ -1,8 +1,7 @@
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,15 +16,10 @@ public class FilterWriter<T> {
         return filterWriter;
     }
 
-    public void filterAnDWriteToFile(List<T> list, Predicate<T> predicate, String fileName) {
-
-        Path path = Paths.get(fileName);
-
+    public void filterAnDWriteToFile(List<T> list, Predicate<T> predicate, File fileName) {
         //Use try-with-resource to get auto-closeable writer instance
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             for (T t : list) {
-
-
                 if (predicate.test(t))
                     writer.write(t.toString() + "\n");
             }
