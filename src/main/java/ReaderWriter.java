@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,12 +14,12 @@ public class ReaderWriter {
         return readerWriter;
     }
 
-    public void writeToFile(Map map, String fileName) {
+    public void writeToFile(Map map, File fileName) {
 
-        Path path = Paths.get(fileName);
+//        Path path = Paths.get(fileName);
 
         //Use try-with-resource to get auto-closeable writer instance
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
 
             writer.write(map + "\n");
 
@@ -30,17 +28,14 @@ public class ReaderWriter {
         }
     }
 
-    public String readFile(String fileName) {
-        Path path = Paths.get(fileName);
+    public String readFile(File fileName) {
+
         StringBuilder result = new StringBuilder();
-        try (BufferedReader reader = Files.newBufferedReader(path)) {
-
-
-            while (reader.read() != -1) {
-                result.append(reader.readLine());
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result.append(line);
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

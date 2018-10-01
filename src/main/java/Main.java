@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 public class Main {
     public static final File xmlFilePath = new File("xmlfile.xml");
     public static final File richPeoplePath = new File("richPeople.txt");
-    public static final String currency = "currency.txt";
+    public static final File currency = new File("currency.txt");
 
     public static void main(String[] args) throws TransformerConfigurationException {
         List<Person> people = Arrays.asList(
@@ -17,7 +17,7 @@ public class Main {
                 new Person("Sasha", "addr3", 2222, "NAU")
         );
         XMLCreator.getXMLCreator().create(xmlFilePath, people);
-        List<Person> peopleFromXML = XMLParser.getXMLParser().parseRichPeople(xmlFilePath);
+        List<Person> peopleFromXML = XMLParser.getXMLParser().parsePeople(xmlFilePath);
         final int richBorder = 10000;
         Predicate<Person> predicate = x -> x.getCash() > richBorder;
         FilterWriter filterWriter = FilterWriter.getFilterWriter();

@@ -25,7 +25,7 @@ public class XMLParser {
     private final String ADDRESS = "address";
     private final String CASH = "cash";
 
-    public List<Person> parseRichPeople(File fileName) {
+    public List<Person> parsePeople(File fileName) {
 
 
         List<Person> people = new ArrayList<>();
