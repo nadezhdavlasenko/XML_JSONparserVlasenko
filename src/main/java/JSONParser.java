@@ -68,7 +68,7 @@ public class JSONParser {
         return sb.toString();
     }
 
-    public List getMapFromJSONString(String jsonString) {
+    public List getListFromJSONString(String jsonString) {
         JsonParser parser = new JsonParser();
         List list = new Gson().fromJson(parser.parse(jsonString), List.class);
         return list;

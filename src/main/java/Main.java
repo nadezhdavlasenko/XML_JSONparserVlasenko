@@ -27,7 +27,7 @@ public class Main {
         final String url = "https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json";
         JSONParser jsonParser = JSONParser.getJsonParser();
         String jsonString = jsonParser.getJSONStringFromAPI(url);
-        List<Map> list = jsonParser.getMapFromJSONString(jsonString);
+        List<Map> list = jsonParser.getListFromJSONString(jsonString);
         System.out.println(list);
         Map map = jsonParser.getMapFromList(list, "txt", "rate");
         System.out.println(map);
