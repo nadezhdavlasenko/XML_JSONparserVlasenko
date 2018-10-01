@@ -18,7 +18,7 @@ public class JSONParserTest {
 //    @Spy
 //    InputStream is ;
 //    @Spy
-    BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));
+   // BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));
     JSONParser jsonParser = JSONParser.getJsonParser();
 
     @Test
@@ -37,16 +37,23 @@ public class JSONParserTest {
 
     @Test
     public void getListFromJSONString(){
-        String jsonString = "[{fff:1,ggg:2,hhh:3},{nn:44,mm:55}]";
-        List result = jsonParser.getListFromJSONString(jsonString);
-//        Map map = new HashMap();
-//        map.put("fff","1.0");
-//        map.put("ggg", "2.0");
-//        map.put("hhh","3.0");
-//        List expected = new ArrayList();
-//        expected.add(map);
-        assert( result instanceof List);
-        assert(result.get(0) instanceof Map);
-        assertEquals(1d, ((Map)result.get(0)).get("fff"));
+        String jsonString = "[{fff:hi,ggg:2,hhh:grats},{fff:bye,ggg:1}]";
+        List resultList = jsonParser.getListFromJSONString(jsonString);
+        assert( resultList instanceof List);
+        assert(resultList.get(0) instanceof Map);
+        assertEquals("hi", ((Map)resultList.get(0)).get("fff"));
+    }
+
+    @Test
+    public void getMapFromList(){
+        Map map = new HashMap();
+        map.put("fff","hi");
+        map.put("ggg", 2d);
+        map.put("hhh","3.0");
+        List list = new ArrayList();
+        list.add(map);
+        Map resultMap = jsonParser.getMapFromList(list, "ggg", "fff");
+        assert (resultMap instanceof Map);
+        assertEquals ("hi",resultMap.get(2.0));
     }
 }
