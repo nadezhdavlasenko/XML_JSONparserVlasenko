@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public class Main {
-    public static final String xmlFilePath = "xmlfile.xml";
+    public static final File xmlFilePath = new File("xmlfile.xml");
     public static final File richPeoplePath = new File("richPeople.txt");
     public static final String currency = "currency.txt";
 

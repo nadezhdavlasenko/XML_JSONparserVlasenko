@@ -7,6 +7,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,11 @@ public class XMLParser {
     public static XMLParser getXMLParser() {
         return xmlParser;
     }
+    private final String NAME = "name";
+    private final String ADDRESS = "address";
+    private final String CASH = "cash";
 
-    public List<Person> parseRichPeople(String fileName) {
+    public List<Person> parseRichPeople(File fileName) {
 
 
         List<Person> people = new ArrayList<>();
@@ -37,7 +41,7 @@ public class XMLParser {
             System.out.println("List of persons:");
             System.out.println();
             Node notebook = root.getFirstChild();
-            // Просматриваем все подэлементы корневого - т.е. книги
+            // Просматриваем все подэлементы корневого
             NodeList peopleNodes = notebook.getChildNodes();
             for (int i = 0; i < peopleNodes.getLength(); i++) {
                 Node person = peopleNodes.item(i);
@@ -45,9 +49,9 @@ public class XMLParser {
                 if (person.getNodeType() != Node.TEXT_NODE) {
                     NodeList personProps = person.getChildNodes();
                     Person p = new Person();
-                    p.setName(((Element) person).getElementsByTagName("name").item(0).getTextContent());
-                    p.setAddress(((Element) person).getElementsByTagName("address").item(0).getTextContent());
-                    p.setCash(Integer.valueOf(((Element) person).getElementsByTagName("cash").item(0).getTextContent()));
+                    p.setName(((Element) person).getElementsByTagName(NAME).item(0).getTextContent());
+                    p.setAddress(((Element) person).getElementsByTagName(ADDRESS).item(0).getTextContent());
+                    p.setCash(Integer.valueOf(((Element) person).getElementsByTagName(CASH).item(0).getTextContent()));
                     people.add(p);
                     for (int j = 0; j < personProps.getLength(); j++) {
                         Node personProp = personProps.item(j);

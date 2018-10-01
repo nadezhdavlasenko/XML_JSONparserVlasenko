@@ -13,6 +13,7 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 import static junit.framework.Assert.assertNotSame;
+import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
@@ -60,8 +61,8 @@ public class JSONParserTest {
     public void getListFromJSONString(){
         String jsonString = "[{fff:hi,ggg:2,hhh:grats},{fff:bye,ggg:1}]";
         List resultList = jsonParser.getListFromJSONString(jsonString);
-        assert( resultList instanceof List);
-        assert(resultList.get(0) instanceof Map);
+        assertTrue( resultList instanceof List);
+        assertTrue(resultList.get(0) instanceof Map);
         assertEquals("hi", ((Map)resultList.get(0)).get("fff"));
     }
 
@@ -74,7 +75,7 @@ public class JSONParserTest {
         List list = new ArrayList();
         list.add(map);
         Map resultMap = jsonParser.getMapFromList(list, "ggg", "fff");
-        assert (resultMap instanceof Map);
+        assertTrue (resultMap instanceof Map);
         assertEquals ("hi",resultMap.get(2.0));
     }
 }

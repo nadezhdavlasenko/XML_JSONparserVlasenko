@@ -48,7 +48,7 @@ public class XMLCreator {
     private final String CASH = "cash";
     private final String EDUCATION = "education";
 
-    public void create(String xmlFilePath, List<Person> people) throws TransformerConfigurationException {
+    public void create(File file, List<Person> people) throws TransformerConfigurationException {
         try {
             // root element
             Element root = document.createElement(CATALOG);
@@ -96,7 +96,7 @@ public class XMLCreator {
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
             DOMSource domSource = new DOMSource(document);
-            StreamResult streamResult = new StreamResult(new File(xmlFilePath));
+            StreamResult streamResult = new StreamResult(file);
 
             // If you use
             // StreamResult result = new StreamResult(System.out);

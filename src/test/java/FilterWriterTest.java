@@ -16,7 +16,7 @@ public class FilterWriterTest {
 
     List list = Arrays.asList("testList1", "testList2");
     Predicate predicate = p -> p.toString().contains("1");
-    String fileName = "tempFile.txt";
+    final String fileName = "tempFile.txt";
     FilterWriter filterWriter = FilterWriter.getFilterWriter();
 
     @Rule
