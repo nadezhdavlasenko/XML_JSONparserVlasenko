@@ -39,7 +39,7 @@ public class FilterWriterTest {
     @Test
     public void filterAnDWriteToConsole() throws Exception {
         filterWriter.filterAnDWriteToConsole(list, predicate);
-        assertEquals("testList1\n", systemOutRule.getLog());
+        assertEquals("testList1\n", systemOutRule.getLogWithNormalizedLineSeparator());
     }
 
 }

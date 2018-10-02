@@ -16,6 +16,7 @@ public class ReaderWriterTest {
 
     @Rule
     public TemporaryFolder tempFolder = new TemporaryFolder();
+
     @Test
     public void writeToFile() throws Exception {
         final File tempFile = tempFolder.newFile(fileName);
@@ -26,14 +27,13 @@ public class ReaderWriterTest {
         final String s = FileUtils.readFileToString(tempFile);
         final String contains = "key1=33.0";
         assertTrue(s.contains(contains));
-
     }
 
     @Test
     public void readFile() throws Exception {
         final File tempFile = tempFolder.newFile(fileName);
         FileUtils.writeStringToFile(tempFile, "something");
-        assertEquals("something",readerWriter.readFile(tempFile));
+        assertEquals("something", readerWriter.readFile(tempFile));
     }
 
 }

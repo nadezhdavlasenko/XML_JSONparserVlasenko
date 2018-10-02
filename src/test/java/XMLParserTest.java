@@ -1,13 +1,9 @@
-
 import org.apache.commons.io.FileUtils;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
 
 import java.io.File;
-
-import static org.junit.Assert.*;
 
 public class XMLParserTest {
 

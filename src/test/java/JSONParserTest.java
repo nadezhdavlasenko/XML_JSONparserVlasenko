@@ -1,34 +1,19 @@
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import org.mockito.Mock;
-import org.mockito.Spy;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.*;
 
 import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 public class JSONParserTest {
 
-//    @Spy
-//    InputStream is ;
-//    @Spy
-   // BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(System.in));
     JSONParser jsonParser = JSONParser.getJsonParser();
-    //@Spy
-
-    int responsecode;
 
     @Test
     public void getJSONStringFromAPI() throws IOException {

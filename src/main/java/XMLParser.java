@@ -34,7 +34,6 @@ public class XMLParser {
             DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             // Создается дерево DOM документа из файла
             Document document = documentBuilder.parse(fileName);
-
             // Получаем корневой элемент
             Node root = document.getDocumentElement();
 

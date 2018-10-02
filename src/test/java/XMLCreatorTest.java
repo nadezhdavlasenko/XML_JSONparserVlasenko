@@ -1,11 +1,8 @@
-
 import org.apache.commons.io.FileUtils;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemOutRule;
 import org.junit.rules.TemporaryFolder;
-import org.junit.runner.RunWith;
 
 import java.io.File;
 import java.util.Arrays;
@@ -30,9 +27,8 @@ public class XMLCreatorTest {
         final String xmlContains = "<catalog><notebook><person id=\"0\"><name>vasia<";
         // Verify the content
         assertTrue(s.contains(xmlContains));
-        assertEquals("Done creating XML File\n", systemOutRule.getLog());
+        assertEquals("Done creating XML File\n", systemOutRule.getLogWithNormalizedLineSeparator());
     }
-
 
 
 }
